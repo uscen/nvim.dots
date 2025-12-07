@@ -1,39 +1,39 @@
 {
   "export": {
-    "prefix": "e",
+    "prefix": ["exp", "e"],
     "body": "export ${0}"
   },
   "return": {
-    "prefix": "r",
+    "prefix": ["req", "r"],
     "body": "return ${0}"
   },
   "import": {
-    "prefix": "i",
+    "prefix": ["imp", "i"],
     "body": "import ${0}"
   },
+  "describe": {
+    "prefix": ["des", "d"],
+    "body": "describe('${1:description}', () => {\n\t${0}\n})"
+  },
   "await": {
-    "prefix": "a",
+    "prefix": ["awa", "a"],
     "body": "await ${0}"
   },
   "Promise": {
-    "prefix": "p",
+    "prefix": ["pro", "p"],
     "body": "Promise"
   },
   "new Promise": {
-    "prefix": "np",
+    "prefix": ["newp", "np"],
     "body": "new Promise((resolve, reject) => {\n\t${0}\n})"
   },
   "Promise.then": {
-    "prefix": "pt",
+    "prefix": ["pthen", "pt"],
     "body": "${1:promise}.then((${2:value}) => {\n\t${0}\n})"
   },
   "Promise.catch": {
-    "prefix": "pc",
+    "prefix": ["pcatch", "pc"],
     "body": "${1:promise}.catch(error => {\n\t${0}\n})"
-  },
-  "describe": {
-    "prefix": "desc",
-    "body": "describe('${1:description}', () => {\n\t${0}\n})"
   },
   "Promise.all": {
     "prefix": "pa",
@@ -80,35 +80,35 @@
     "body": "${1:document}.addEventListener('${2:event}', ${3:ev} => {\n\t${0}\n})"
   },
   "removeEventListener": {
-    "prefix": "rel",
+    "prefix": "re",
     "body": "${1:document}.removeEventListener('${2:event}', ${3:listener})"
   },
   "getElementById": {
     "prefix": "gi",
-    "body": "${1:document}.getElementById('${2:id}')"
+    "body": "document.getElementById('${1:id}')"
   },
   "getElementsByClassName": {
     "prefix": "gc",
-    "body": "Array.from(${1:document}.getElementsByClassName('${2:class}'))"
+    "body": "document.getElementsByClassName('${0:class}'))"
   },
   "getElementsByTagName": {
     "prefix": "gt",
-    "body": "Array.from(${1:document}.getElementsByTagName('${2:tag}'))"
+    "body": "document.getElementsByTagName('${0:tag}'))"
   },
   "querySelector": {
-    "prefix": "qs",
-    "body": "${1:document}.querySelector('${2:selector}')"
+    "prefix": "gqs",
+    "body": "document.querySelector('${0:selector}')"
   },
   "querySelectorAll": {
-    "prefix": "qsa",
-    "body": "Array.from(${1:document}.querySelectorAll('${2:selector}'))"
+    "prefix": "gqa",
+    "body": "document.querySelectorAll('${0:selector}')"
   },
   "createElement": {
     "prefix": "cel",
-    "body": "${1:document}.createElement(${2:elem})"
+    "body": "document.createElement(${0:element})"
   },
   "forEach loop": {
-    "prefix": "fe",
+    "prefix": "foreach",
     "body": "${1:iterable}.forEach((${2:item}) => {\n\t${0}\n})"
   },
   "map": {
@@ -336,146 +336,109 @@
     "body": "import { ${2:originalName} as ${3:alias} } from '${1:module}';$0",
     "description": "Imports a specific portion of the module by assigning a local alias in ES6 syntax"
   },
-  "Anonymous Function": {
-    "prefix": "anfn",
+  "AnonymousFunction": {
+    "prefix": ["alfn", "anfn"],
     "body": ["($1) => {", "\t$0", "}"],
     "description": "Anonymous arrow function"
   },
-  "Short Anonymous Function": {
-    "prefix": "anf",
+  "ShortAnonymousFunction": {
+    "prefix": ["asfn", "anf"],
     "body": ["($1) => $0"],
-    "description": "Anonymous arrow function"
+    "description": "Anonymous short arrow function"
   },
-  "Immediately Invoked Function Expression": {
-    "prefix": "iife",
+  "ImmediatelyInvokedFunctionExpression": {
+    "prefix": ["iifn", "iife"],
     "body": ["(() => {", "\t$1", "})()$0"],
     "description": "Immediately Invoked Function Expression"
   },
-  "Export Default Function": {
+  "RegularFunction": {
+    "prefix": ["fun", "fn"],
+    "body": ["function ${1:name}(${2:params}) => {", "\t$0", "}"],
+    "description": "Immediately Invoked Function Expression"
+  },
+  "ExportDefaultFunction": {
     "prefix": "edfn",
     "body": ["export default function $1($2) {", "\t$0", "}"],
     "description": "Export default function"
   },
-  "Try-Catch Statement": {
+  "Try-CatchStatement": {
     "prefix": ["trycatch", "tc"],
     "body": ["try {", "\t$1", "} catch (${0}) {", "\t", "}"],
     "description": "Try-Catch Statement"
   },
-  "Console Log": {
-    "prefix": "log",
-    "body": ["console.log($1)$0"],
-    "description": "Console log statement"
-  },
-  "consoleAssert": {
-    "key": "consoleAssert",
-    "prefix": "cas",
-    "body": ["console.assert(${1:first}, ${2:second})"],
-    "description": "If the specified expression is false, the message is written to the console along with a stack trace",
-    "scope": "typescript,typescriptreact,javascript,javascriptreact"
-  },
-  "consoleClear": {
-    "key": "consoleClear",
-    "prefix": "ccl",
-    "body": ["console.clear()"],
-    "description": "Clears the console",
-    "scope": "typescript,typescriptreact,javascript,javascriptreact"
-  },
-  "consoleCount": {
-    "key": "consoleCount",
-    "prefix": "cco",
-    "body": ["console.count(${1:first})"],
-    "description": "Writes the the number of times that count() has been invoked at the same line and with the same label",
-    "scope": "typescript,typescriptreact,javascript,javascriptreact"
-  },
-  "consoleDir": {
-    "key": "consoleDir",
-    "prefix": "cdi",
-    "body": ["console.dir(${1:first})"],
-    "description": "Prints a JavaScript representation of the specified object",
-    "scope": "typescript,typescriptreact,javascript,javascriptreact"
-  },
-  "consoleError": {
-    "key": "consoleError",
-    "prefix": "cer",
-    "body": ["console.error(${1:first})"],
-    "description": "Displays a message in the console and also includes a stack trace from where the method was called",
-    "scope": "typescript,typescriptreact,javascript,javascriptreact"
-  },
-  "consoleGroup": {
-    "key": "consoleGroup",
-    "prefix": "cgr",
-    "body": ["console.group('${1:first}')"],
-    "description": "Groups and indents all following output by an additional level, until console.groupEnd() is called.",
-    "scope": "typescript,typescriptreact,javascript,javascriptreact"
-  },
-  "consoleGroupEnd": {
-    "key": "consoleGroupEnd",
-    "prefix": "cge",
-    "body": ["console.groupEnd()"],
-    "description": "Closes out the corresponding console.group().",
-    "scope": "typescript,typescriptreact,javascript,javascriptreact"
-  },
   "consoleLog": {
-    "key": "consoleLog",
-    "prefix": "clg",
-    "body": ["console.log(${1:first})"],
-    "description": "Displays a message in the console",
-    "scope": "typescript,typescriptreact,javascript,javascriptreact"
-  },
-  "consoleTrace": {
-    "key": "consoleTrace",
-    "prefix": "ctr",
-    "body": ["console.trace(${1:first})"],
-    "description": "Prints a stack trace from the point where the method was called",
-    "scope": "typescript,typescriptreact,javascript,javascriptreact"
-  },
-  "consoleLogObject": {
-    "key": "consoleLogObject",
-    "prefix": "clo",
-    "body": ["console.log('${1:first}', ${1:first})"],
-    "description": "Logs property with name.",
-    "scope": "typescript,typescriptreact,javascript,javascriptreact"
+    "prefix": ["clog", "clg", "log"],
+    "body": ["console.log(${1})"],
+    "description": "Displays a message in the console"
   },
   "consoleLogJson": {
-    "key": "consoleLogJson",
-    "prefix": "clj",
-    "body": ["console.log('${1:first}', JSON.stringify(${1:first}, null, 2))"],
-    "description": "Logs stringified JSON property with name.",
-    "scope": "typescript,typescriptreact,javascript,javascriptreact"
-  },
-  "consoleTime": {
-    "key": "consoleTime",
-    "prefix": "ctm",
-    "body": ["console.time('${1:first}')"],
-    "description": "Console time wrapper",
-    "scope": "typescript,typescriptreact,javascript,javascriptreact"
-  },
-  "consoleTimeEnd": {
-    "key": "consoleTimeEnd",
-    "prefix": "cte",
-    "body": ["console.timeEnd('${1:first}')"],
-    "description": "Console time end wrapper",
-    "scope": "typescript,typescriptreact,javascript,javascriptreact"
-  },
-  "consoleWarn": {
-    "key": "consoleWarn",
-    "prefix": "cwa",
-    "body": ["console.warn(${1:first})"],
-    "description": "Displays a message in the console but also displays a yellow warning icon along with the logged message",
-    "scope": "typescript,typescriptreact,javascript,javascriptreact"
+    "prefix": ["cljson", "clj"],
+    "body": ["console.log('${1}', JSON.stringify(${0}, null, 2))"],
+    "description": "Logs stringified JSON property with name."
   },
   "consoleInfo": {
-    "key": "consoleInfo",
-    "prefix": "cin",
-    "body": ["console.info(${1:first})"],
-    "description": "Displays a message in the console but also displays a blue information icon along with the logged message",
-    "scope": "typescript,typescriptreact,javascript,javascriptreact"
+    "prefix": ["clinfo", "cli"],
+    "body": ["console.info(${1})"],
+    "description": "Displays a message in the console but also displays a blue information icon along with the logged message"
+  },
+  "consoleWarn": {
+    "prefix": ["clwarn", "clw"],
+    "body": ["console.warn(${1})"],
+    "description": "Displays a message in the console but also displays a yellow warning icon along with the logged message"
+  },
+  "consoleError": {
+    "prefix": ["clerror", "cle"],
+    "body": ["console.error(${1})"],
+    "description": "Displays a message in the console and also includes a stack trace from where the method was called"
+  },
+  "consoleCount": {
+    "prefix": ["clcount", "clc"],
+    "body": ["console.count(${1:label})"],
+    "description": "Writes the the number of times that count() has been invoked at the same line and with the same label"
+  },
+  "consoleDir": {
+    "prefix": ["cldir", "cld"],
+    "body": ["console.dir(${1})"],
+    "description": "Prints a JavaScript representation of the specified object"
+  },
+  "consoleAssert": {
+    "prefix": ["classert", "cla"],
+    "body": ["console.assert(${1}, ${0})"],
+    "description": "If the specified expression is false, the message is written to the console along with a stack trace"
+  },
+  "consoleTrace": {
+    "prefix": ["cltrace", "clt"],
+    "body": ["console.trace(${1})"],
+    "description": "Prints a stack trace from the point where the method was called"
   },
   "consoleTable": {
-    "key": "consoleTable",
-    "prefix": "ctl",
-    "body": ["console.table([${1:first}])"],
-    "description": "Logs table to console",
-    "scope": "typescript,typescriptreact,javascript,javascriptreact"
+    "prefix": ["cltable", "clt"],
+    "body": ["console.table([${1}])"],
+    "description": "Logs table to console"
+  },
+  "consoleClear": {
+    "prefix": ["clclear", "cle"],
+    "body": ["console.clear()"],
+    "description": "Clears the console"
+  },
+  "consoleGroup": {
+    "prefix": "clgroup",
+    "body": ["console.group('${1:label}')"],
+    "description": "Groups and indents all following output by an additional level, until console.groupEnd() is called."
+  },
+  "consoleGroupEnd": {
+    "prefix": "clgroupend",
+    "body": ["console.groupEnd(${1:label})"],
+    "description": "Closes out the corresponding console.group()."
+  },
+  "consoleTime": {
+    "prefix": "cltime",
+    "body": ["console.time('${1:label}')"],
+    "description": "Console time wrapper"
+  },
+  "consoleTimeEnd": {
+    "prefix": "cltimend",
+    "body": ["console.timeEnd('${1:label}')"],
+    "description": "Console time end wrapper"
   }
 }

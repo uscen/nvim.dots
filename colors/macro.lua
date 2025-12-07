@@ -1,5 +1,5 @@
 --          ╔═════════════════════════════════════════════════════════╗
---          ║                         Macro                           ║
+--          ║                           Macro                         ║
 --          ╚═════════════════════════════════════════════════════════╝
 -- Clear hlgroups and set colors_name {{{
 vim.cmd.hi('clear')
@@ -66,11 +66,11 @@ if vim.go.bg == 'dark' then
   c_macroAqua    = { '#95aeac', 109 }
   c_macroAsh     = { '#626462', 241 }
   c_macroBg0     = { '#0d0c0c', 232 }
-  c_macroBg1     = { '#181616', 233 }
+  c_macroBg1     = { '#101010', 233 }
   c_macroBg2     = { '#201d1d', 234 }
   c_macroBg3     = { '#282727', 235 }
   c_macroBg4     = { '#393836', 237 }
-  c_macroBg5     = { '#625e5a', 241 }
+  c_macroBg5     = { '#424242', 241 }
   c_macroBlue0   = { '#658594', 66 }
   c_macroBlue1   = { '#8ba4b0', 109 }
   c_macroFg0     = { '#c5c9c5', 251 }
@@ -219,9 +219,9 @@ local hlgroups = {
   Directory                                = { fg = c_macroBlue1 },
   EndOfBuffer                              = { fg = c_macroBg1 },
   ErrorMsg                                 = { fg = c_lotusRed1 },
-  FloatBorder                              = { bg = c_macroBg0, fg = c_winterGreen },
+  FloatBorder                              = { bg = c_macroBg0, fg = c_winterBlue },
   FloatFooter                              = { bg = c_macroBg0, fg = c_macroBg5 },
-  FloatTitle                               = { bg = c_macroBg0, fg = c_winterGreen, bold = true },
+  FloatTitle                               = { bg = c_macroBg0, fg = c_winterBlue, bold = true },
   FoldColumn                               = { fg = c_macroBg5 },
   Folded                                   = { bg = c_macroBg2, fg = c_lotusGray },
   Ignore                                   = { link = 'NonText' },
@@ -231,17 +231,17 @@ local hlgroups = {
   ModeMsg                                  = { fg = c_macroRed, bold = true },
   MoreMsg                                  = { fg = c_macroBlue0 },
   MsgArea                                  = { fg = c_macroFg1 },
-  MsgSeparator                             = { bg = c_macroBg0 },
+  MsgSeparator                             = { bg = c_macroBg1, fg = c_winterBlue },
   NonText                                  = { fg = c_macroBg5 },
   Normal                                   = { bg = c_macroBg1, fg = c_macroFg0 },
-  NormalFloat                              = { bg = c_macroBg0, fg = c_macroFg1 },
+  NormalFloat                              = { bg = c_macroBg0, fg = c_macroGray2 },
   NormalNC                                 = { link = 'Normal' },
-  Pmenu                                    = { bg = c_macroBg0, fg = c_macroFg1 },
-  PmenuMatch                               = { fg = c_macroGreen1 },
+  Pmenu                                    = { bg = c_macroBg0, fg = c_macroGray2 },
+  PmenuMatch                               = { fg = c_macroBlue1 },
   PmenuExtra                               = { fg = c_macroAsh },
-  PmenuSbar                                = { bg = c_macroBg0 },
-  PmenuSel                                 = { bg = c_macroBg1, fg = 'NONE' },
-  PmenuThumb                               = { bg = c_macroBg0 },
+  PmenuSbar                                = { bg = c_macroBg2 },
+  PmenuSel                                 = { bg = c_macroBg2, fg = 'NONE' },
+  PmenuThumb                               = { bg = c_macroBg3 },
   Question                                 = { link = 'MoreMsg' },
   QuickFixLine                             = { bg = c_winterGreen },
   Search                                   = { bg = c_macroBg4 },
@@ -250,8 +250,8 @@ local hlgroups = {
   SpellCap                                 = { underdashed = true },
   SpellLocal                               = { underdashed = true },
   SpellRare                                = { underdashed = true },
-  StatusLine                               = { bg = c_macroBg3, fg = c_macroFg1 },
-  StatusLineNC                             = { bg = c_macroBg2, fg = c_macroBg5 },
+  StatusLine                               = { bg = c_macroBg1, fg = c_macroBg5 },
+  StatusLineNC                             = { bg = c_macroBg1, fg = c_macroBg5 },
   Substitute                               = { bg = c_autumnRed, fg = c_macroFg0 },
   TabLine                                  = { link = 'StatusLineNC' },
   TabLineFill                              = { link = 'Normal' },
@@ -274,7 +274,7 @@ local hlgroups = {
   -- Syntax {{{2
   Boolean                                  = { fg = c_macroOrange0, bold = true },
   Character                                = { link = 'String' },
-  Comment                                  = { fg = c_macroAsh },
+  Comment                                  = { fg = c_macroAsh, bold = true, italic = true },
   Constant                                 = { fg = c_macroOrange0 },
   Delimiter                                = { fg = c_macroGray1 },
   Error                                    = { fg = c_lotusRed1 },
@@ -465,7 +465,7 @@ local hlgroups = {
 
   -- Mini {{{2
   -- mini.diff
-  MiniDiffSignAdd                          = { fg = c_autumnGreen },
+  MiniDiffSignAdd                          = { fg = c_macroGray2 },
   MiniDiffSignChange                       = { fg = c_sumiInk6 },
   MiniDiffSignDelete                       = { fg = c_lotusRed0 },
   MiniDiffSignDeletePreview                = { bg = c_winterRed },
@@ -475,18 +475,13 @@ local hlgroups = {
   GitBlameAuthor                           = { link = 'Title' },
   GitBlameDate                             = { link = 'Title' },
   GitBlameHashRoot                         = { fg = c_autumnGreen, bold = true },
-  fugitiveStagedModifier                   = { fg = c_autumnGreen },
-  fugitiveUnStagedHeading                  = { fg = c_autumnYellow, bold = true },
-  fugitiveUnstagedModifier                 = { fg = c_autumnYellow },
-  fugitiveUntrackedHeading                 = { fg = c_macroAqua, bold = true },
-  fugitiveUntrackedModifier                = { fg = c_macroAqua },
 
   -- mini.pick
-  MiniPickBorder                           = { bg = c_macroBg0, fg = c_winterGreen },
-  MiniPickNormal                           = { bg = c_macroBg0, fg = c_macroFg1 },
-  MiniPickMatchCurrent                     = { bg = c_macroBg1 },
-  MiniPickMatchMarked                      = { bg = c_macroBg0, fg = c_macroGreen1 },
-  MiniPickPrompt                           = { bg = c_macroBg0, fg = c_macroGreen1 },
+  MiniPickBorder                           = { bg = c_macroBg0, fg = c_winterBlue },
+  MiniPickNormal                           = { bg = c_macroBg0, fg = c_macroGray2 },
+  MiniPickMatchCurrent                     = { bg = c_macroBg2 },
+  MiniPickMatchMarked                      = { bg = c_macroBg0, fg = c_macroBlue1 },
+  MiniPickPrompt                           = { bg = c_macroBg0, fg = c_macroBlue1 },
   MiniPickMatchRanges                      = { link = 'MiniPickMatchMarked' },
   MiniPickPreviewRegion                    = { link = 'MiniPickBorder' },
   MiniPickPreviewLine                      = { link = 'MiniPickBorder' },
@@ -497,31 +492,101 @@ local hlgroups = {
   MiniPickHeader                           = { link = 'MiniPickBorder' },
 
   -- mini.files
-  MiniFilesBorder                          = { bg = c_macroBg0, fg = c_winterGreen },
-  MiniFilesNormal                          = { bg = c_macroBg0, fg = c_macroFg1 },
-  MiniFilesDirectory                       = { fg = c_macroFg1 },
-  MiniFilesCursorLine                      = { bg = c_macroBg1 },
-  MiniFilesBorderModified                  = { bg = c_macroBg0, fg = c_macroGreen1 },
+  MiniFilesBorder                          = { bg = c_macroBg0, fg = c_winterBlue },
+  MiniFilesNormal                          = { bg = c_macroBg0, fg = c_macroGray2 },
+  MiniFilesDirectory                       = { fg = c_macroGray2 },
+  MiniFilesCursorLine                      = { bg = c_macroBg2 },
+  MiniFilesBorderModified                  = { bg = c_macroBg0, fg = c_macroGray2 },
   MiniFilesFile                            = { link = 'MiniFilesDirectory' },
   MiniFilesTitle                           = { link = 'MiniFilesBorder' },
   MiniFilesTitleFocused                    = { link = 'MiniFilesBorder' },
 
   -- mini.notify
-  MiniNotifyBorder                         = { bg = c_macroBg0, fg = c_winterGreen },
-  MiniNotifyNormal                         = { bg = c_macroBg0, fg = c_macroFg2 },
+  MiniNotifyBorder                         = { bg = c_macroBg0, fg = c_winterBlue },
+  MiniNotifyNormal                         = { bg = c_macroBg0, fg = c_macroGray2 },
   MiniNotifyLspProgress                    = { link = 'MiniNotifyNormal' },
   MiniNotifyTitle                          = { link = 'MiniNotifyBorder' },
 
   -- mini.snippets
-  MiniSnippetsCurrent                      = { fg = c_macroGreen1 },
+  MiniSnippetsCurrent                      = { fg = c_macroBlue1 },
   MiniSnippetsCurrentReplace               = { link = 'MiniSnippetsCurrent' },
   MiniSnippetsUnvisited                    = { link = 'MiniSnippetsCurrent' },
   MiniSnippetsVisited                      = { link = 'MiniSnippetsCurrent' },
   MiniSnippetsFinal                        = { link = 'Comment' },
 
   -- mini.completions
-  MiniCompletionActiveParameter            = { fg = c_macroGreen1 },
-  MiniCompletionInfoBorderOutdated         = { link = 'MiniCompletionActiveParameter' },
+  MiniCompletionActiveParameter            = { fg = c_macroBlue1 },
+  MiniCompletionInfoBorderOutdated         = { link = 'FloatBorder' },
+  -- }}}
+
+  -- Plugins {{{2
+  -- gitsigns
+  GitSignsAdd                              = { fg = c_autumnGreen },
+  GitSignsChange                           = { fg = c_sumiInk6 },
+  GitSignsDelete                           = { fg = c_lotusRed0 },
+  GitSignsDeletePreview                    = { bg = c_winterRed },
+
+  -- fugitive
+  fugitiveHash                             = { link = 'gitHash' },
+  fugitiveHeader                           = { link = 'Title' },
+  fugitiveHeading                          = { link = 'Title' },
+  fugitiveStagedHeading                    = { fg = c_autumnGreen, bold = true },
+  fugitiveStagedModifier                   = { fg = c_autumnGreen },
+  fugitiveUnStagedHeading                  = { fg = c_autumnYellow, bold = true },
+  fugitiveUnstagedModifier                 = { fg = c_autumnYellow },
+  fugitiveUntrackedHeading                 = { fg = c_macroAqua, bold = true },
+  fugitiveUntrackedModifier                = { fg = c_macroAqua },
+
+  -- telescope
+  TelescopeBorder                          = { bg = c_macroBg2, fg = c_sumiInk6 },
+  TelescopeMatching                        = { fg = c_macroRed, bold = true },
+  TelescopeNormal                          = { bg = c_macroBg2, fg = c_macroFg2 },
+  TelescopePromptBorder                    = { bg = c_macroBg3, fg = c_sumiInk6 },
+  TelescopePromptNormal                    = { bg = c_macroBg3, fg = c_macroFg2 },
+  TelescopeResultsClass                    = { link = 'Structure' },
+  TelescopeResultsField                    = { link = '@variable.member' },
+  TelescopeResultsMethod                   = { link = 'Function' },
+  TelescopeResultsStruct                   = { link = 'Structure' },
+  TelescopeResultsVariable                 = { link = '@variable' },
+  TelescopeSelection                       = { link = 'Visual' },
+  TelescopeTitle                           = { bg = c_macroTeal, fg = c_macroBg0 },
+
+  -- nvim-dap-ui
+  DapUIBreakpointsCurrentLine              = { bold = true, fg = c_macroFg0 },
+  DapUIBreakpointsDisabledLine             = { link = 'Comment' },
+  DapUIBreakpointsInfo                     = { fg = c_macroBlue0 },
+  DapUIBreakpointsPath                     = { link = 'Directory' },
+  DapUIDecoration                          = { fg = c_sumiInk6 },
+  DapUIFloatBorder                         = { fg = c_sumiInk6 },
+  DapUILineNumber                          = { fg = c_macroTeal },
+  DapUIModifiedValue                       = { bold = true, fg = c_macroTeal },
+  DapUIPlayPause                           = { fg = c_macroGreen1 },
+  DapUIRestart                             = { fg = c_macroGreen1 },
+  DapUIScope                               = { link = 'Special' },
+  DapUISource                              = { fg = c_macroRed },
+  DapUIStepBack                            = { fg = c_macroTeal },
+  DapUIStepInto                            = { fg = c_macroTeal },
+  DapUIStepOut                             = { fg = c_macroTeal },
+  DapUIStepOver                            = { fg = c_macroTeal },
+  DapUIStop                                = { fg = c_lotusRed0 },
+  DapUIStoppedThread                       = { fg = c_macroTeal },
+  DapUIThread                              = { fg = c_macroFg0 },
+  DapUIType                                = { link = 'Type' },
+  DapUIUnavailable                         = { fg = c_macroAsh },
+  DapUIWatchesEmpty                        = { fg = c_lotusRed0 },
+  DapUIWatchesError                        = { fg = c_lotusRed0 },
+  DapUIWatchesValue                        = { fg = c_macroFg0 },
+
+  -- lazy.nvim
+  LazyProgressTodo                         = { fg = c_macroBg5 },
+
+  -- statusline
+  StatusLineGitAdded                       = { bg = c_macroBg3, fg = c_macroGreen1 },
+  StatusLineGitChanged                     = { bg = c_macroBg3, fg = c_carpYellow },
+  StatusLineGitRemoved                     = { bg = c_macroBg3, fg = c_macroRed },
+  StatusLineGitBranch                      = { bg = c_macroBg3, fg = c_macroAsh },
+  StatusLineHeader                         = { bg = c_macroBg5, fg = c_macroFg1 },
+  StatusLineHeaderModified                 = { bg = c_macroRed, fg = c_macroBg1 },
   -- }}}
 }
 -- }}}1

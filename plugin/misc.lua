@@ -1,5 +1,5 @@
 --          ╔═════════════════════════════════════════════════════════╗
---          ║                         Misc                            ║
+--          ║                             Misc                        ║
 --          ╚═════════════════════════════════════════════════════════╝
 local M = {}
 -- Open url in buffer: ===========================================================================
@@ -162,7 +162,7 @@ M.delete_buffer = function()
       winclose()
     end
   else
-    require('mini.bufremove').delete()
+    require('mini.bufremove').wipeout(0, true)
   end
 end
 vim.api.nvim_create_user_command('DeleteBuffer', M.delete_buffer, {})
@@ -170,12 +170,24 @@ vim.api.nvim_create_user_command('DeleteBuffer', M.delete_buffer, {})
 function M.deleteOthersBuffers()
   for _, buf in ipairs(vim.api.nvim_list_bufs()) do
     if buf ~= vim.fn.bufnr() and vim.fn.buflisted(buf) == 1 then
-      require('mini.bufremove').delete(buf, true)
+      require('mini.bufremove').wipeout(buf, true)
     end
   end
 end
 
 vim.api.nvim_create_user_command('DeleteOtherBuffers', M.deleteOthersBuffers, {})
+-- Open All hunks in quickfix: =====================================================================
+function M.diffInQuickFix()
+  local hunks = require('mini.diff').export('qf')
+  if #hunks == 0 then
+    vim.notify('No changes to show', vim.log.levels.INFO)
+    return
+  end
+  vim.fn.setqflist(hunks)
+  vim.cmd('copen')
+end
+
+vim.api.nvim_create_user_command('MiniDiffInQuickFixList', M.diffInQuickFix, {})
 -- Box Comment: ==================================================================================
 function M.boxComment()
   local count = vim.v.count1
@@ -208,4 +220,116 @@ function M.boxComment()
   vim.fn.cursor(line_num + 2, inner_start)
   vim.cmd([[startreplace]])
 end
+
 vim.api.nvim_create_user_command('BoxComment', M.boxComment, {})
+-- Surround: =====================================================================================
+function M.SurroundOrReplaceQuotes()
+  local word = vim.fn.expand('<cword>')
+  local row, old_pos = unpack(vim.api.nvim_win_get_cursor(0))
+  vim.fn.search(word, 'bc', row)
+  local _, word_pos = unpack(vim.api.nvim_win_get_cursor(0))
+  local line_str = vim.api.nvim_get_current_line()
+  local before_word = line_str:sub(0, word_pos)
+  local pairs_count = 0
+  for _ in before_word:gmatch('["\'`]') do
+    pairs_count = pairs_count + 1
+  end
+  if pairs_count % 2 == 0 then
+    vim.cmd('normal ysiw\'')
+    vim.api.nvim_win_set_cursor(0, { row, old_pos + 1 })
+    return
+  end
+  for i = #before_word, 1, -1 do
+    local char = before_word:sub(i, i)
+    if char == "'" then
+      vim.cmd("normal cs'\"")
+      vim.api.nvim_win_set_cursor(0, { row, old_pos })
+      return
+    end
+    if char == '"' then
+      vim.cmd('normal cs\"`')
+      vim.api.nvim_win_set_cursor(0, { row, old_pos })
+      return
+    end
+    if char == '`' then
+      vim.cmd("normal cs`'")
+      vim.api.nvim_win_set_cursor(0, { row, old_pos })
+      return
+    end
+  end
+end
+
+vim.api.nvim_create_user_command('SurroundOrReplaceQuotes', M.SurroundOrReplaceQuotes, {})
+-- This is a simplified version of in-and-out.nvim: ==============================================
+-- https://github.com/ysmb-wtsg/in-and-out.nvim
+local function escape_lua_pattern(s)
+  local matches = {
+    ['^'] = '%^',
+    ['$'] = '%$',
+    ['('] = '%(',
+    [')'] = '%)',
+    ['%'] = '%%',
+    ['.'] = '%.',
+    ['['] = '%[',
+    [']'] = '%]',
+    ['*'] = '%*',
+    ['+'] = '%+',
+    ['-'] = '%-',
+    ['?'] = '%?',
+  }
+  return s:gsub('.', matches)
+end
+local targets = { '"', "'", '(', ')', '{', '}', '[', ']', '`', '“', '”' }
+function M.leap()
+  local line_nr, col_nr = unpack(vim.api.nvim_win_get_cursor(0))
+  local line = vim.api.nvim_get_current_line()
+
+  local target_col_nr = nil
+  for _, char in ipairs(targets) do
+    local found_col_nr =
+        string.find(line, escape_lua_pattern(char), col_nr + 1)
+    if
+        found_col_nr and (not target_col_nr or found_col_nr < target_col_nr)
+    then
+      -- If char is a multibyte character, we need to take into
+      -- account the extra bytes.
+      target_col_nr = found_col_nr + vim.fn.strlen(char) - 1
+    end
+  end
+
+  if target_col_nr then
+    vim.api.nvim_win_set_cursor(0, { line_nr, target_col_nr })
+  end
+end
+
+vim.api.nvim_create_user_command('Leap', M.leap, {})
+-- go_to_relative_file: ==========================================================================
+function M.go_to_relative_file(n, relative_to)
+  return function()
+    local this_dir = vim.fs.dirname(vim.fs.normalize(vim.fn.expand('%:p')))
+    local files = {}
+    for file, type in vim.fs.dir(this_dir) do
+      if type == 'file' then
+        table.insert(files, file)
+      end
+    end
+    local this_file = relative_to or vim.fs.basename(vim.fn.bufname())
+    local this_file_pos = -1
+    for i, file in ipairs(files) do
+      if file == this_file then
+        this_file_pos = i
+      end
+    end
+    if this_file_pos == -1 then
+      error(('File `%s` not found in current directory'):format(this_file))
+    end
+    local new_file = files[((this_file_pos + n - 1) % #files) + 1]
+    if not new_file then
+      error(('Could not find file relative to `%s`'):format(this_file))
+    end
+    vim.cmd('edit ' .. this_dir .. '/' .. new_file)
+  end
+end
+
+vim.api.nvim_create_user_command('RelativeFileNext', M.go_to_relative_file(1), {})
+vim.api.nvim_create_user_command('RelativeFilePrev', M.go_to_relative_file(-1), {})

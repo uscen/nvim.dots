@@ -4,24 +4,6 @@
 local palette
 if vim.o.background == 'light' then
   -- palette = {
-  --   base00 = "#F1E3D1",
-  --   base01 = "#DDCEBC",
-  --   base02 = "#C9B9A7",
-  --   base03 = "#B5A492",
-  --   base04 = "#A0907D",
-  --   base05 = "#64513E",
-  --   base06 = "#786653",
-  --   base07 = "#8C7B68",
-  --   base08 = "#D09700",
-  --   base09 = "#64513E",
-  --   base0A = "#993333",
-  --   base0B = "#908D6A",
-  --   base0C = "#d09700",
-  --   base0D = "#BF7979",
-  --   base0E = "#9E5581",
-  --   base0F = "#75858C",
-  -- }
-  -- palette = {
   --   base00 = "#EFECF4",
   --   base01 = "#E2DFE7",
   --   base02 = "#8B8792",
@@ -39,24 +21,43 @@ if vim.o.background == 'light' then
   --   base0E = "#955AE7",
   --   base0F = "#BF40BF",
   -- }
-  -- charcoal_light
+  -- Charcoal_light
+  -- palette = {
+  --   base00 = '#d6b891',
+  --   base01 = '#c0a179',
+  --   base02 = '#a28662',
+  --   base03 = '#887254',
+  --   base04 = '#1e1812',
+  --   base05 = '#35291d',
+  --   base06 = '#413325',
+  --   base07 = '#d6b891',
+  --   base08 = '#413325',
+  --   base09 = '#120f09',
+  --   base0A = '#292016',
+  --   base0B = '#120f09',
+  --   base0C = '#413325',
+  --   base0D = '#120f09',
+  --   base0E = '#292016',
+  --   base0F = '#66553f',
+  -- }
+  -- Kanagawa_light
   palette = {
-    base00 = '#d6b891',
-    base01 = '#c0a179',
-    base02 = '#a28662',
-    base03 = '#887254',
-    base04 = '#1e1812',
-    base05 = '#35291d',
-    base06 = '#413325',
-    base07 = '#d6b891',
-    base08 = '#413325',
-    base09 = '#120f09',
-    base0A = '#292016',
-    base0B = '#120f09',
-    base0C = '#413325',
-    base0D = '#120f09',
-    base0E = '#292016',
-    base0F = '#66553f',
+    base00 = '#F1E3D1',
+    base01 = '#DDCEBC',
+    base02 = '#C9B9A7',
+    base03 = '#B5A492',
+    base04 = '#A0907D',
+    base05 = '#64513E',
+    base06 = '#786653',
+    base07 = '#8C7B68',
+    base08 = '#D09700',
+    base09 = '#64513E',
+    base0A = '#993333',
+    base0B = '#908D6A',
+    base0C = '#d09700',
+    base0D = '#BF7979',
+    base0E = '#9E5581',
+    base0F = '#75858C',
   }
 end
 if vim.o.background == 'dark' then
@@ -136,7 +137,7 @@ if vim.o.background == 'dark' then
   --   base0E = "#d3869b",
   --   base0F = "#d65d0e"
   -- }
-  -- everforest
+  -- Everforest
   -- palette = {
   --   base00 = "#2b3339",
   --   base01 = "#323c41",
@@ -155,7 +156,7 @@ if vim.o.background == 'dark' then
   --   base0E = "#e67e80",
   --   base0F = "#d699b6"
   -- }
-  -- aquarium
+  -- Aquarium
   -- palette = {
   --   base00 = "#20202A",
   --   base01 = "#2c2e3e",
@@ -174,26 +175,7 @@ if vim.o.background == 'dark' then
   --   base0E = "#f6bbe7",
   --   base0F = "#eAc1c1"
   -- }
-  -- Kanagawa
-  -- palette = {
-  --   base00 = "#181616",
-  --   base01 = "#1b1b1b",
-  --   base02 = "#282828",
-  --   base03 = "#5a524c",
-  --   base04 = "#bdae93",
-  --   base05 = "#ddc7a1",
-  --   base06 = "#ebdbb2",
-  --   base07 = "#fbf1c7",
-  --   base08 = "#c4746e",
-  --   base09 = "#e46876",
-  --   base0A = "#c4b28a",
-  --   base0B = "#8a9a7b",
-  --   base0C = "#8ea4a2",
-  --   base0D = "#8ba4b0",
-  --   base0E = "#a292a3",
-  --   base0F = "#7aa89f",
-  -- }
-  -- paradise
+  -- Paradise
   -- palette = {
   --   base00 = "#151515",
   --   base01 = "#1F1F1F",
@@ -212,7 +194,7 @@ if vim.o.background == 'dark' then
   --   base0E = "#A988B0",
   --   base0F = "#BBB6B6",
   -- }
-  -- custom 01
+  -- Custom 01
   -- palette = {
   --   base00 = "#1A1B26",
   --   base01 = "#16161E",
@@ -250,7 +232,7 @@ if vim.o.background == 'dark' then
   --   base0E = "#C678DD",
   --   base0F = "#BE5046",
   -- }
-  -- everblush
+  -- Everblush
   -- palette = {
   --   base00 = "#141b1e",
   --   base01 = "#1e2527",
@@ -269,31 +251,50 @@ if vim.o.background == 'dark' then
   --   base0E = "#c47fd5",
   --   base0F = "#ef7d7d",
   -- }
-  -- charcoal_dark
+  -- Charcoal_dark
+  -- palette = {
+  --   base00 = '#120f09',
+  --   base01 = '#1e1812',
+  --   base02 = '#35291d',
+  --   base03 = '#66553f',
+  --   base04 = '#a28662',
+  --   base05 = '#c0a179',
+  --   base06 = '#d6b891',
+  --   base07 = '#292016',
+  --   base08 = '#887254',
+  --   base09 = '#d6b891',
+  --   base0A = '#c0a179',
+  --   base0B = '#927a60',
+  --   base0C = '#a28662',
+  --   base0D = '#d6b891',
+  --   base0E = '#a28662',
+  --   base0F = '#887254',
+  -- }
+  -- Kanagawa
   palette = {
-    base00 = '#120f09',
-    base01 = '#1e1812',
-    base02 = '#35291d',
-    base03 = '#66553f',
-    base04 = '#a28662',
-    base05 = '#c0a179',
-    base06 = '#d6b891',
-    base07 = '#292016',
-    base08 = '#887254',
-    base09 = '#d6b891',
-    base0A = '#c0a179',
-    base0B = '#927a60',
-    base0C = '#a28662',
-    base0D = '#d6b891',
-    base0E = '#a28662',
-    base0F = '#887254',
+    base00 = '#181616',
+    base01 = '#1b1b1b',
+    base02 = '#282828',
+    base03 = '#5a524c',
+    base04 = '#bdae93',
+    base05 = '#ddc7a1',
+    base06 = '#ebdbb2',
+    base07 = '#fbf1c7',
+    base08 = '#c4746e',
+    base09 = '#e46876',
+    base0A = '#c4b28a',
+    base0B = '#8a9a7b',
+    base0C = '#8ea4a2',
+    base0D = '#8ba4b0',
+    base0E = '#a292a3',
+    base0F = '#7aa89f',
   }
 end
 if palette then
   require('mini.base16').setup({
     palette = palette,
     use_cterm = true,
-    plugins = { default = false, ['echasnovski/mini.nvim'] = true, },
+    plugins = { default = false, ['echasnovski/mini.nvim'] = true },
   })
   vim.g.colors_name = 'base'
 end
@@ -318,23 +319,6 @@ vim.api.nvim_set_hl(0, 'PmenuThumb', { link = 'PmenuSel' })
 vim.api.nvim_set_hl(0, 'PmenuKind', { link = 'PmenuExtra' })
 vim.api.nvim_set_hl(0, 'PmenuExtraSel', { link = 'PmenuExtra' })
 vim.api.nvim_set_hl(0, 'PmenuKindSel', { link = 'PmenuExtra' })
--- Tabline: ======================================================================================
-vim.api.nvim_set_hl(0, 'MiniTablineCurrent', { fg = palette.base0B, bg = palette.base00, bold = true, italic = false })
-vim.api.nvim_set_hl(0, 'MiniTablineHidden', { fg = palette.base03, bg = palette.base00, bold = true, italic = false })
-vim.api.nvim_set_hl(0, 'MiniTablineVisible', { link = 'MiniTablineCurrent' })
-vim.api.nvim_set_hl(0, 'MiniTablineModifiedCurrent', { link = 'MiniTablineCurrent' })
-vim.api.nvim_set_hl(0, 'MiniTablineModifiedVisible', { link = 'MiniTablineCurrent' })
-vim.api.nvim_set_hl(0, 'MiniTablineModifiedHidden', { link = 'MiniTablineHidden' })
-vim.api.nvim_set_hl(0, 'MiniTablineTabpagesSection', { link = 'MiniTablineCurrent' })
-vim.api.nvim_set_hl(0, 'MiniTablineFill', { link = 'MiniTablineCurrent' })
--- Starter: ======================================================================================
-vim.api.nvim_set_hl(0, 'MiniStarterHeader', { fg = palette.base0B, bg = palette.base00, bold = true, italic = true })
-vim.api.nvim_set_hl(0, 'MiniStarterItem', { fg = palette.base07, bg = palette.base00, bold = true, italic = true })
-vim.api.nvim_set_hl(0, 'MiniStarterItemPrefix', { link = 'MiniStarterHeader' })
-vim.api.nvim_set_hl(0, 'MiniStarterQuery', { link = 'MiniStarterHeader' })
-vim.api.nvim_set_hl(0, 'MiniStarterSection', { link = 'MiniStarterHeader' })
-vim.api.nvim_set_hl(0, 'MiniStarterHeadeMiniStarterQueryr', { link = 'MiniStarterHeader' })
-vim.api.nvim_set_hl(0, 'MiniStarterFooter', { link = 'MiniStarterHeader' })
 -- Files: ========================================================================================
 vim.api.nvim_set_hl(0, 'MiniFilesBorder', { fg = palette.base0B, bg = palette.base00, bold = false, italic = false })
 vim.api.nvim_set_hl(0, 'MiniFilesDirectory', { fg = palette.base04, bold = false, italic = false })

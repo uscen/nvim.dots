@@ -100,3 +100,11 @@ vim.cmd([[
   iabbrev itne inte
   iabbrev Itne Inte
 ]])
+
+-- Command Line: =================================================================================
+vim.cmd([[
+  cnoreabbrev G Git
+  cnoreabbrev Set set
+  cnoreabbrev SET set
+  cnoreabbrev SEt set
+]])

@@ -1,6 +1,6 @@
 {
   "require": {
-    "prefix": "req",
+    "prefix": ["req", "r"],
     "body": ["require(${1:module})"],
     "description": "Require module"
   },
@@ -53,8 +53,20 @@
     "body": "if vim.g.vscode then return end",
     "prefix": "invscode"
   },
+  "inneovide": {
+    "body": "if vim.g.neovide then return end",
+    "prefix": "ineovide"
+  },
   "keymap": {
     "body": "vim.keymap.set(${1:mode}, ${2:lhs}, ${3:rhs}, $0)",
     "prefix": "keymap"
+  },
+  "Inspect": {
+    "prefix": ["inspect", "ins"],
+    "body": "print(vim.inspect($1))"
+  },
+  "Print": {
+    "prefix": ["print", "vp"],
+    "body": "vim.print($0)"
   }
 }
